@@ -1,0 +1,163 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* border: 2px solid green; */
+}
+/* .licard{
+    width: 50%;
+} */
+.scoreBoard{
+    display: flex;
+    margin: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-wrap: nowrap; */
+    gap: 2%;
+}
+.move{
+    /* border: 2px solid black; */
+    font-size: 1rem;
+}
+.timmer{
+    /* border: 2px solid black; */
+    font-size: 1rem;
+}
+.reset{
+    /* border: 2px solid black; */
+    font-size: 1rem;
+    cursor: pointer;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    border-radius: 4px;
+    background-color: #2A3D45;
+    padding: 1rem;
+    box-shadow: 8px 9px 26px rgba(42, 61, 69, 0.5);
+}
+
+.grid-container .card{
+    background: #DDC9B4;
+    width: 3.7rem;
+    height: 3.7rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #B16F65;
+    font-size: 0;
+    margin: 0.2rem 0.2rem;
+    cursor: pointer;
+    box-shadow: 5px 2px 20px #C17C74 0.5;
+}
+
+.grid-container .card.open{
+    transform: rotateY(0);
+    background: #BCAC9B;
+	cursor: default;
+	animation-name: flipInY;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+}
+
+.grid-container .card.show{
+    font-size: 33px;
+    visibility: visible !important;
+	opacity: 100 !important;
+}
+.grid-container .card.disabled{
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.grid-container .card.match{
+    cursor: default;
+	background: #E5F720;
+	font-size: 33px;
+	animation-name: rubberBand;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+}
+
+.grid-container .card.unmatched{
+    animation-name: pulse;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+	background: #e2043b;
+}
+@keyframes flipInY {
+	from {
+		transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+		animation-timing-function: ease-in;
+		opacity: 0;
+	}
+
+	40% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+		animation-timing-function: ease-in;
+	}
+
+	60% {
+		transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+		opacity: 1;
+	}
+
+	80% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+	}
+
+	to {
+		transform: perspective(400px);
+	}
+    
+}
+@keyframes rubberBand {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	30% {
+		transform: scale3d(1.25, 0.75, 1);
+	}
+
+	40% {
+		transform: scale3d(0.75, 1.25, 1);
+	}
+
+	50% {
+		transform: scale3d(1.15, 0.85, 1);
+	}
+
+	65% {
+		transform: scale3d(.95, 1.05, 1);
+	}
+
+	75% {
+		transform: scale3d(1.05, .95, 1);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
+}
+@keyframes pulse {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	50% {
+		transform: scale3d(1.2, 1.2, 1.2);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
+}
